@@ -123,6 +123,9 @@ iptmark -m set --match-set streaming src,dst -j DSCP --set-dscp-class AF41 -m co
 # some iptv provider's use this port
 iptmark -p tcp -m multiport --ports 1935,9982 -j DSCP --set-dscp-class AF41 -m comment --comment "some iptv streaming service"
 
+# Youtube use carefully, may be too large...
+iptmark -s 64.18.0.0/20,64.233.160.0/19,66.102.0.0/20,66.249.80.0/20,72.14.192.0/18,74.125.0.0/16,173.194.0.0/16,207.126.144.0/20,209.85.128.0/17,216.58.208.0/20,216.239.32.0/19  -j DSCP --set-dscp-class AF41 -m comment --comment "large ip youtube stream"
+
 #known usrcdn like google or akamai
 
 iptmark -m set --match-set usrcdn src,dst -j DSCP --set-dscp-class AF21 -m comment --comment "usrcdn ipset"
